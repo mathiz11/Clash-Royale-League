@@ -1,18 +1,18 @@
-.header {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 2rem;
-  border-bottom: 1px solid #eaeaea;
-}
+/*header {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  padding: 0.5rem 1rem;*/
+/*  border-bottom: 1px solid #eaeaea;*/
+/*}*/
 
-.link {
+a {
   padding: 0.5rem;
   margin: 0 0.5rem;
 }
 
 .homeLink {
-  padding: 0.5rem;
-  margin: 0 0.5rem;
+  padding: 0 0.9rem;
+  margin: unset;
   display: flex;
   align-items: center;
 }

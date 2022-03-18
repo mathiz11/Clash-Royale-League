@@ -8,24 +8,23 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Image,
   Input,
 } from "@chakra-ui/react";
 import { Form, Formik, FormikValues } from "formik";
-import { NextPage } from "next";
-import { loginSchema, LoginValues } from "../utils/form";
-import styles from "../styles/login.module.css";
+import "../styles/Login.css"
 import authService from "../services/authService";
 import { ACTIONS, useStore } from "../components/Store";
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginSchema, LoginValues } from "../utils/form";
+import logo from "../images/cr-logo.png"
 
-const Login: NextPage = () => {
+const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
   const initialValues: LoginValues = {email: "", password: ""};
   const [, dispatch] = useStore();
-  const router = useRouter();
+  const navigate = useNavigate();
 
   function signIn(values: FormikValues) {
     setLoading(true);
@@ -36,7 +35,7 @@ const Login: NextPage = () => {
           payload: {user: response.data},
         });
         setLoading(false);
-        router.push("/");
+        navigate("/");
       } else {
         setLoading(false);
         setErrorMessage(response.message);
@@ -48,7 +47,7 @@ const Login: NextPage = () => {
     <main>
       <Container pt={10}>
         {errorMessage && (
-          <Alert status="error" className={styles.pt}>
+          <Alert status="error" className="pt">
             <AlertIcon/>
             {errorMessage}
             <CloseButton
@@ -60,7 +59,7 @@ const Login: NextPage = () => {
           </Alert>
         )}
         <Center>
-          <Image src="cr-logo.png" alt="Logo Clash Royale" width={320}/>
+          <img src={logo} alt="Logo Clash Royale" width={320}/>
         </Center>
         <Formik
           initialValues={initialValues}
@@ -71,7 +70,7 @@ const Login: NextPage = () => {
         >
           {({values, setFieldValue, errors}) => (
             <Form>
-              <FormControl className={styles.pt} isInvalid={!!errors.email}>
+              <FormControl className="pt" isInvalid={!!errors.email}>
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <Input
                   id="email"
@@ -83,7 +82,7 @@ const Login: NextPage = () => {
                   <FormErrorMessage>{errors.email}</FormErrorMessage>
                 )}
               </FormControl>
-              <FormControl className={styles.pt} isInvalid={!!errors.password}>
+              <FormControl className="pt" isInvalid={!!errors.password}>
                 <FormLabel htmlFor="password">Mot de passe</FormLabel>
                 <Input
                   id="password"
@@ -97,7 +96,7 @@ const Login: NextPage = () => {
               </FormControl>
               <Center>
                 <Button
-                  className={styles.pt}
+                  className="pt"
                   type="submit"
                   colorScheme={"blue"}
                   isLoading={loading}

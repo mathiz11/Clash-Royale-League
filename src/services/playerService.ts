@@ -9,7 +9,7 @@ export type Player = {
   leagues: string[]
 }
 
-async function getOne(): Promise<ReqResponse> {
+async function getOne(): Promise<ReqResponse<Player>> {
   const auth = getAuth()
   const db = getDatabase()
 

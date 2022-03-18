@@ -1,26 +1,34 @@
-import { NextPage } from "next";
 import Header from "../components/Header";
 import { useStore } from "../components/Store";
-import Head from 'next/head'
+import { Container, FormControl, FormLabel, Heading, Input } from "@chakra-ui/react";
 
-const Profile: NextPage = () => {
+const Profile = () => {
   const [state] = useStore()
-  console.log(state)
 
   return (
     <div>
-      <Head>
-        <title>Profil</title>
-        <meta name="description" content="Bienvenue la page de profil"/>
-        <link rel="icon" href="/favicon.ico"/>
-      </Head>
-
       <Header/>
-
-      <main>
-        <h1>Championnats</h1>
-
-      </main>
+      <Container pt={10}>
+        <Heading as="h1">Profil</Heading>
+        <FormControl pt={5}>
+          <FormLabel htmlFor="username">Nom d'utilisateur</FormLabel>
+          <Input
+            id="username"
+            type="text"
+            value={state.player?.username}
+            disabled
+          />
+        </FormControl>
+        <FormControl pt={5}>
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <Input
+            id="email"
+            type="text"
+            value={state.player?.email}
+            disabled
+          />
+        </FormControl>
+      </Container>
     </div>
   )
 }

@@ -1,16 +1,17 @@
 import authService from "../services/authService";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {
-  const router = useRouter()
+  const navigate = useNavigate()
 
   useEffect(() => {
     (async () => {
       if (!authService.isAuth()) {
-        await router.push("/login")
+        await navigate("/login")
       }
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }
 

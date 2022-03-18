@@ -1,6 +1,6 @@
-export type ReqResponse = {
+export type ReqResponse<T> = {
   ok: boolean;
-  data?: any;
+  data?: T;
   message?: string;
 };
 
